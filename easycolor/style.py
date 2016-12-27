@@ -1,3 +1,4 @@
+# Copyright George T. Gougoudis 2016. BSD 3-Clause license; see LICENSE file.
 import collections
 import functools
 

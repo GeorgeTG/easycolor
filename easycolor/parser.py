@@ -1,5 +1,6 @@
+# Copyright George T. Gougoudis 2016. BSD 3-Clause license; see LICENSE file.
 import sys
-from .style import TextStyle, make_style
+from .style import make_style, RESET
 if sys.version_info.major >= 3:
     from html.parser import HTMLParser
 else:
@@ -100,7 +101,7 @@ class ColorParser(HTMLParser, object):
         """ Parse a rich string """
         self.reset()
         self.feed(data)
-        return self.result + TextStyle.RESET
+        return self.result + RESET
 
     def cprint(self, data):
         print(self.parse(data))

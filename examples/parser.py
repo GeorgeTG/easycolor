@@ -10,7 +10,7 @@ cprint("""<f:red,b:yellow>red on yellow</b>just red<b:black>red on black!"""
        """<f:green>green on black</f>again red on black</f,b>normal""")
 
 # with opts
-cprint("""<o:bold,o:italic>bold and italic</o:bolds>only italic""")
+cprint("""<o:bold,o:italic>bold and italic</o:bold> only italic""")
 
 # Nice log messages
 some_string = "spam"
