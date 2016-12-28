@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>easycolor.style - Simple text style &#8212; easycolor 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="easycolor.parser — Advanced text style" href="parser.html" />
+    <link rel="prev" title="easycolor — Welcome to easycolor’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-easycolor.style">
+<span id="easycolor-style-simple-text-style"></span><h1><a class="reference internal" href="#module-easycolor.style" title="easycolor.style: A module that provides simple styling"><code class="xref py py-mod docutils literal"><span class="pre">easycolor.style</span></code></a> - Simple text style<a class="headerlink" href="#module-easycolor.style" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<p>This module defines the <a class="reference internal" href="#easycolor.style.TextStyle" title="easycolor.style.TextStyle"><code class="xref py py-class docutils literal"><span class="pre">TextStyle</span></code></a> class which is the basis
+for creating text styles.
+It also provides helper functions for easier usage.</p>
+<dl class="attribute">
+<dt id="easycolor.style.RESET">
+<code class="descclassname">easycolor.style.</code><code class="descname">RESET</code><a class="headerlink" href="#easycolor.style.RESET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Reset all style.</p>
+<hr class="docutils" />
+<dl class="class">
+<dt id="easycolor.style.TextStyle">
+<em class="property">class </em><code class="descclassname">easycolor.style.</code><code class="descname">TextStyle</code><span class="sig-paren">(</span><em>fg=None</em>, <em>bg=None</em>, <em>opt=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#easycolor.style.TextStyle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a text style
+The keyword arguments fg, bg, opt can be used to initiallize the style.
+The foreground and background colors can be then changed and options
+can be added later.</p>
+<p>Note: The bg, fg, opt methods return the style instance, to enable
+method chaining.</p>
+<dl class="docutils">
+<dt>Valid colors:</dt>
+<dd>&#8216;black&#8217;, &#8216;red&#8217;, &#8216;green&#8217;, &#8216;yellow&#8217;, &#8216;blue&#8217;, &#8216;magenta&#8217;, &#8216;cyan&#8217;, &#8216;white&#8217;.</dd>
+<dt>Valid options:</dt>
+<dd>&#8216;bold&#8217;, &#8216;faint&#8217;, &#8216;italic&#8217;, &#8216;undeline&#8217;,
+&#8216;blink&#8217;, &#8216;blink_fast&#8217;, &#8216;negative&#8217;,
+&#8216;conceal&#8217;, &#8216;strikeout&#8217;.</dd>
+</dl>
+<dl class="method">
+<dt id="easycolor.style.TextStyle.bg">
+<code class="descname">bg</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#easycolor.style.TextStyle.bg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a background color.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="easycolor.style.TextStyle.compile">
+<code class="descname">compile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#easycolor.style.TextStyle.compile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the compiled ANSI espace sequence as a string.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="easycolor.style.TextStyle.fg">
+<code class="descname">fg</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#easycolor.style.TextStyle.fg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a foreground color.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="easycolor.style.TextStyle.opt">
+<code class="descname">opt</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#easycolor.style.TextStyle.opt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add (an) option(s).
+value can be an itterable or a single string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="easycolor.style.make_style">
+<code class="descclassname">easycolor.style.</code><code class="descname">make_style</code><span class="sig-paren">(</span><em>fg=None</em>, <em>bg=None</em>, <em>opt=()</em><span class="sig-paren">)</span><a class="headerlink" href="#easycolor.style.make_style" title="Permalink to this definition">¶</a></dt>
+<dd><p>The keyword arguments fg, bg, opt can be used to define the style.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="easycolor.style.wrap">
+<code class="descclassname">easycolor.style.</code><code class="descname">wrap</code><span class="sig-paren">(</span><em>text</em>, <em>fg=None</em>, <em>bg=None</em>, <em>opt=()</em><span class="sig-paren">)</span><a class="headerlink" href="#easycolor.style.wrap" title="Permalink to this definition">¶</a></dt>
+<dd><p>The keyword arguments fg, bg, opt can be used to define the style,
+appends reset after the text.</p>
+</dd></dl>
+
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>To wrap text, the <a class="reference internal" href="#easycolor.style.wrap" title="easycolor.style.wrap"><code class="xref py py-func docutils literal"><span class="pre">wrap()</span></code></a> function must be imported.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">easycolor.style</span> <span class="k">import</span> <span class="n">wrap</span> <span class="k">as</span> <span class="n">_w</span>
+</pre></div>
+</div>
+<p>The text is then wrapped as easy as:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># wrap text, appends a style-reset</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">_w</span><span class="p">(</span><span class="s1">&#39;yellow on red&#39;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;normal text&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To compile a style, the <a class="reference internal" href="#easycolor.style.make_style" title="easycolor.style.make_style"><code class="xref py py-func docutils literal"><span class="pre">make_style()</span></code></a> function is used:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">easycolor.style</span> <span class="k">import</span> <span class="n">make_style</span><span class="p">,</span> <span class="n">RESET</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># define some styles</span>
+<span class="n">black_on_white</span> <span class="o">=</span> <span class="n">make_style</span><span class="p">(</span><span class="n">fg</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="c1"># we have to reset the background here</span>
+<span class="n">red_bold</span> <span class="o">=</span> <span class="n">make_style</span><span class="p">(</span><span class="n">fg</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s1">&#39;reset&#39;</span><span class="p">,</span> <span class="n">opt</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="c1"># An options reset is only possible with a total reset</span>
+<span class="c1"># we can however negate an option to remove it(&#39;!option&#39;).</span>
+<span class="n">green_bold_underline</span> <span class="o">=</span> <span class="n">make_style</span><span class="p">(</span><span class="n">fg</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">opt</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;!bold&#39;</span><span class="p">,</span> <span class="s1">&#39;underline&#39;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">black_on_white</span> <span class="o">+</span> <span class="s1">&#39;Black on white&#39;</span> <span class="o">+</span> <span class="n">red_bold</span> <span class="o">+</span> <span class="s1">&#39;Red bold&#39;</span> <span class="o">+</span>
+      <span class="n">green_bold_underline</span> <span class="o">+</span> <span class="s1">&#39;Green not bold underline&#39;</span> <span class="o">+</span> <span class="n">RESET</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Note</strong>: For advanced formatting use the <a class="reference internal" href="parser.html#module-easycolor.parser" title="easycolor.parser: A module that provides advanced styling"><code class="xref py py-mod docutils literal"><span class="pre">easycolor.parser</span></code></a> module.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="docutils literal"><span class="pre">easycolor.style</span></code> - Simple text style</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter"><code class="docutils literal"><span class="pre">easycolor</span></code> &#8212; Welcome to easycolor&#8217;s documentation!</a></li>
+      <li>Next: <a href="parser.html" title="next chapter"><code class="docutils literal"><span class="pre">easycolor.parser</span></code> &#8212; Advanced text style</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/style.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, George T. Gougoudis.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/style.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

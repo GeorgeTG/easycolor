@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>easycolor.parser — Advanced text style &#8212; easycolor 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="easycolor.style - Simple text style" href="style.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-easycolor.parser">
+<span id="easycolor-parser-advanced-text-style"></span><h1><a class="reference internal" href="#module-easycolor.parser" title="easycolor.parser: A module that provides advanced styling"><code class="xref py py-mod docutils literal"><span class="pre">easycolor.parser</span></code></a> &#8212; Advanced text style<a class="headerlink" href="#module-easycolor.parser" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<p>This module defines the <a class="reference internal" href="#easycolor.parser.ColorParser" title="easycolor.parser.ColorParser"><code class="xref py py-class docutils literal"><span class="pre">ColorParser</span></code></a> class which is used to
+create advnaced text styles.</p>
+<dl class="class">
+<dt id="easycolor.parser.ColorParser">
+<em class="property">class </em><code class="descclassname">easycolor.parser.</code><code class="descname">ColorParser</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#easycolor.parser.ColorParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Parser that supports html-like syntax
+to add advanced style to your text.</p>
+<p>The syntax is as follows:</p>
+<p>Open tag: &lt;f:color,b:color,o:option,o:option....&gt;
+All text in the tag will have the configured
+style applied to it, unless a nested tag overrides it.</p>
+<p>Close tag: &lt;/f,b,o:option,o:option...&gt;
+Note: options must be explicitly closed.</p>
+<dl class="method">
+<dt id="easycolor.parser.ColorParser.cprint">
+<code class="descname">cprint</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#easycolor.parser.ColorParser.cprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper around parse, to print text</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="easycolor.parser.ColorParser.parse">
+<code class="descname">parse</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#easycolor.parser.ColorParser.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse a string that contains formatting.
+Automatically appends a RESET at the end.
+The parser resets everytime this method is called.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>First obtain an instance:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">easycolor.parser</span> <span class="k">import</span> <span class="n">ColorParser</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">ColorParser</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Then for printing:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cprint</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">cprint</span>
+<span class="c1"># Add rainbow colors!</span>
+<span class="n">cprint</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;&lt;f:red&gt;r&lt;f:yellow&gt;ai&lt;f:green&gt;nb&lt;f:blue&gt;o&lt;f:magenta&gt;w&quot;&quot;&quot;</span>
+       <span class="sd">&quot;&quot;&quot;&lt;/f&gt;o&lt;/f&gt;bn&lt;/f&gt;ia&lt;/f&gt;r&lt;/f&gt;&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="c1"># complex foreground - background</span>
+<span class="n">cprint</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;&lt;f:red,b:yellow&gt;red on yellow&lt;/b&gt;just red&lt;b:black&gt;red on black!&quot;&quot;&quot;</span>
+       <span class="sd">&quot;&quot;&quot;&lt;f:green&gt;green on black&lt;/f&gt;again red on black&lt;/f,b&gt;normal&quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Parse a format string for a colored logger, for later use:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">INFO</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;[&lt;f:cyan&gt;INFO&lt;/f&gt;] &lt;o:bold&gt;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">INFO</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Some info..&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="docutils literal"><span class="pre">easycolor.parser</span></code> &#8212; Advanced text style</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="style.html" title="previous chapter"><code class="docutils literal"><span class="pre">easycolor.style</span></code> - Simple text style</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/parser.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, George T. Gougoudis.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/parser.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
