@@ -9,7 +9,16 @@ else:
 
 class ColorParser(HTMLParser, object):
     """ A Parser that supports html-like syntax
-    to add advanced style to your text!
+    to add advanced style to your text.
+
+    The syntax is as follows:
+
+    Open tag: <f:color,b:color,o:option,o:option....>
+    All text in the tag will have the configured
+    style applied to it, unless a nested tag overrides it.
+
+    Close tag: </f,b,o:option,o:option...>
+    Note: options must be explicitly closed.
     """
 
     def __init__(self, *args, **kwargs):
@@ -98,10 +107,17 @@ class ColorParser(HTMLParser, object):
         self.result += data
 
     def parse(self, data):
-        """ Parse a rich string """
+        """
+        Parse a string that contains formatting.
+        Automatically appends a RESET at the end.
+        The parser resets everytime this method is called.
+        """
         self.reset()
         self.feed(data)
         return self.result + RESET
 
     def cprint(self, data):
+        """
+        A wrapper around parse, to print text
+        """
         print(self.parse(data))

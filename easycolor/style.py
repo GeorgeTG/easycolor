@@ -18,6 +18,7 @@ _BACKGROUND['reset'] = 49
 _OPT_DICT = {OPT_NAMES[x-1]: x for x in range(1, 10)}
 
 RESET = _TEMPLATE % '0'
+""" Reset all style """
 
 
 def _opt_reverse(opt):
@@ -36,26 +37,14 @@ def _get_iterable(x):
 def make_style(fg=None, bg=None, opt=()):
     """
     The keyword arguments fg, bg, opt can be used to define the style.
-    Valid colors:
-        'black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'
-    Valid options:
-        'bold', 'faint', 'italic', 'undeline',
-        'blink', 'blink_fast', 'negative',
-        'conceal', 'strikeout'
     """
     return TextStyle(fg=fg, bg=bg, opt=opt).compile()
 
 
 def wrap(text, fg=None, bg=None, opt=()):
     """
-    The keyword arguments fg, bg, opt can be used to define the style.
-    A RESET is appended, after the text.
-    Valid colors:
-        'black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'
-    Valid options:
-        'bold', 'faint', 'italic', 'undeline',
-        'blink', 'blink_fast', 'negative',
-        'conceal', 'strikeout'
+    The keyword arguments fg, bg, opt can be used to define the style,
+    appends reset after the text.
     """
     return (TextStyle(fg=fg, bg=bg, opt=opt).compile() +
             text + TextStyle.RESET)
@@ -67,9 +56,9 @@ class InvalidOption(Exception):
 
 def _try_key(function):
     @functools.wraps(function)
-    def wrapper(*args, **kwargs):
+    def wrapper(self, value):
         try:
-            function(*args, **kwargs)
+            function(self, value)
         except KeyError as err:
             raise InvalidOption('Invalid {}: {}'.format(
                 function.__name__, str(err)))
@@ -80,14 +69,18 @@ class TextStyle(object):
     """
     Create a text style
     The keyword arguments fg, bg, opt can be used to initiallize the style.
-    The foreground and background colors can be changed
-    Options can be added later
+    The foreground and background colors can be then changed and options
+    can be added later.
+
+    Note: The bg, fg, opt methods return the style instance, to enable
+    method chaining.
+
     Valid colors:
-        'black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'
+        'black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'.
     Valid options:
         'bold', 'faint', 'italic', 'undeline',
         'blink', 'blink_fast', 'negative',
-        'conceal', 'strikeout'
+        'conceal', 'strikeout'.
     """
     RESET = _TEMPLATE % '0'
 
@@ -102,33 +95,33 @@ class TextStyle(object):
 
     @_try_key
     def fg(self, value):
-        """ Add a foreground color
-        returns: The style instance for call chaining
+        """
+        Add a foreground color.
         """
         self._code_list.append(_FOREGROUND[value])
         return self
 
     @_try_key
     def bg(self, value):
-        """ Add a background color
-        returns: The style instance for call chaining
+        """
+        Add a background color.
         """
         self._code_list.append(_BACKGROUND[value])
         return self
 
     @_try_key
     def opt(self, value):
-        """ Add an option
-        Option can be an itterable with options or a single option
-        returns: The style instance for call chaining
+        """
+        Add (an) option(s).
+        value can be an itterable or a single string.
         """
         for opt in _get_iterable(value):
             self._add_opt(opt)
         return self
 
     def _add_opt(self, opt):
-        """ Helper to add option, taking into account
-        negated options
+        """
+        Helper to add option, taking into account negated options
         """
         if opt[0] == '!':
             self._code_list.append(_opt_reverse(_OPT_DICT[opt[1:]]))
@@ -144,5 +137,7 @@ class TextStyle(object):
         return self.compile()
 
     def compile(self):
-        """ Get a compiled ANSI espace sequence """
+        """
+        Get the compiled ANSI espace sequence as a string.
+        """
         return _TEMPLATE % (';'.join(str(code) for code in self._code_list))
