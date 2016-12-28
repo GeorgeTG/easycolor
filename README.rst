@@ -8,6 +8,10 @@ Description
 Make python color ouput easy in UNIX terminals
 that support ANSI sequences.
 
+Installation
+============
+``pip install easycolor``
+
 Documentation
 =============
 
