@@ -6,7 +6,7 @@ Description
 ===========
 
 Make python color ouput easy in UNIX terminals
-that support ANSI sequencies.
+that support ANSI sequences.
 
 Usage
 ======
