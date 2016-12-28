@@ -10,7 +10,11 @@ that support ANSI sequencies.
 
 Usage
 ======
-Check the documentation at: [pages](https://georgetg.github.io/easycolor/)
+Check the documentation at: (https://georgetg.github.io/easycolor/)
+
+Source Code
+===========
+Check at github: (https://github.com/GeorgeTG/easycolor)
 
 License
 =======

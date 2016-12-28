@@ -40,7 +40,7 @@ setup(
     name=NAME,
     version=get_version(os.path.join(NAME, '__init__.py')),
     description='Terminal colors made easy!',
-    long_description=read_file('README.md'),
+    long_description=read_file('README.rst'),
     keywords='color colour terminal text ansi',
     author='George T. Gougoudis',
     author_email='george_gougoudis@gmail.com',
