@@ -11,7 +11,8 @@ that support ANSI sequences.
 Documentation
 =============
 
-Check the documentation at: (https://georgetg.github.io/easycolor/)
+Check the documentation at: (http://easycolor.readthedocs.io/en/latest/)
+also available at: (https://georgetg.github.io/easycolor/)
 
 Source Code
 ===========
